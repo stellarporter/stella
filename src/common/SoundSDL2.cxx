@@ -256,6 +256,14 @@ void SoundSDL2::adjustVolume(Int8 direction)
   myOSystem.frameBuffer().showMessage(message);
 }
 
+#ifdef __LIB_RETRO__
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Uint32 SoundSDL2::queueSize()
+{
+  return myAudioQueue->size();
+}
+#endif
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 string SoundSDL2::about() const
 {

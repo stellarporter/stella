@@ -108,6 +108,13 @@ class SoundSDL2 : public Sound
     */
     string about() const override;
 
+#ifdef __LIB_RETRO__
+    /**
+      Return current number of samples in audio queue
+    */
+    uInt32 queueSize() override;
+#endif
+
   protected:
     /**
       Invoked by the sound callback to process the next sound fragment.
