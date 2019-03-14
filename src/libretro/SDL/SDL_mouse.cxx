@@ -18,24 +18,21 @@
 #include "SDL_lib.hxx"
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-int SDLCALL SDL_InitSubSystem(Uint32 flags)
+DECLSPEC Uint32 SDLCALL SDL_GetMouseState(int *x, int *y)
+{
+  x = y = NULL;
+
+  return 0;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+DECLSPEC int SDLCALL SDL_ShowCursor(int toggle)
 {
   return 0;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags)
-{
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC int SDLCALL SDL_Init(Uint32 flags)
+DECLSPEC int SDLCALL SDL_SetRelativeMouseMode(SDL_bool enabled)
 {
   return 0;
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags)
-{
-  return 0xffffffff;
 }

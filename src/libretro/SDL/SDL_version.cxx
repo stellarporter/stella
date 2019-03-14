@@ -18,24 +18,9 @@
 #include "SDL_lib.hxx"
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-int SDLCALL SDL_InitSubSystem(Uint32 flags)
+DECLSPEC void SDLCALL SDL_GetVersion(SDL_version * ver)
 {
-  return 0;
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags)
-{
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC int SDLCALL SDL_Init(Uint32 flags)
-{
-  return 0;
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags)
-{
-  return 0xffffffff;
+  ver->major = SDL_MAJOR_VERSION;
+  ver->minor = SDL_MINOR_VERSION;
+  ver->patch = SDL_PATCHLEVEL;
 }

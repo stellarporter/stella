@@ -15,27 +15,19 @@
 // this file, and for a DISCLAIMER OF ALL WARRANTIES.
 //============================================================================
 
+#ifndef SDL_SYSVIDEO_HXX
+#define SDL_SYSVIDEO_HXX
+
 #include "SDL_lib.hxx"
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-int SDLCALL SDL_InitSubSystem(Uint32 flags)
+struct SDL_Window
 {
-  return 0;
-}
+  int x, y;
+  int w, h;
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags)
-{
-}
+  int min_w, min_h;
+  int max_w, max_h;
+};
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC int SDLCALL SDL_Init(Uint32 flags)
-{
-  return 0;
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags)
-{
-  return 0xffffffff;
-}
+#endif

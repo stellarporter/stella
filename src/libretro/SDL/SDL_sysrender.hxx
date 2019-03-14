@@ -15,27 +15,42 @@
 // this file, and for a DISCLAIMER OF ALL WARRANTIES.
 //============================================================================
 
+#ifndef SDL_SYSRENDER_HXX
+#define SDL_SYSRENDER_HXX
+
 #include "SDL_lib.hxx"
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-int SDLCALL SDL_InitSubSystem(Uint32 flags)
-{
-  return 0;
-}
+
+typedef struct SDL_RenderDriver SDL_RenderDriver;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags)
+struct SDL_Texture
 {
-}
+  Uint32 format;
+  int access;
+
+  int w;
+  int h;
+
+  SDL_Renderer* renderer;
+
+  void* pixels;
+  Uint32 pitch;
+
+  SDL_Texture* prev;
+  SDL_Texture* next;
+};
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC int SDLCALL SDL_Init(Uint32 flags)
+struct SDL_Renderer
 {
-  return 0;
-}
+  SDL_Texture* textures;
+  SDL_Texture* target;
+};
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags)
+struct SDL_RenderDriver
 {
-  return 0xffffffff;
-}
+};
+
+#endif

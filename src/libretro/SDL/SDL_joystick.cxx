@@ -18,24 +18,48 @@
 #include "SDL_lib.hxx"
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-int SDLCALL SDL_InitSubSystem(Uint32 flags)
+DECLSPEC SDL_Joystick *SDLCALL SDL_JoystickOpen(int device_index)
+{
+  return NULL;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+DECLSPEC void SDLCALL SDL_JoystickClose(SDL_Joystick * joystick)
+{
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+DECLSPEC const char *SDLCALL SDL_JoystickName(SDL_Joystick * joystick)
+{
+  return NULL;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+DECLSPEC SDL_JoystickID SDLCALL SDL_JoystickInstanceID(SDL_Joystick * joystick)
+{
+  return -1;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+DECLSPEC int SDLCALL SDL_JoystickNumAxes(SDL_Joystick * joystick)
 {
   return 0;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags)
-{
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC int SDLCALL SDL_Init(Uint32 flags)
+DECLSPEC int SDLCALL SDL_JoystickNumButtons(SDL_Joystick * joystick)
 {
   return 0;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags)
+DECLSPEC int SDLCALL SDL_JoystickNumHats(SDL_Joystick * joystick)
 {
-  return 0xffffffff;
+  return 0;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+DECLSPEC int SDLCALL SDL_JoystickNumBalls(SDL_Joystick * joystick)
+{
+  return 0;
 }

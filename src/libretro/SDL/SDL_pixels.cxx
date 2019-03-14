@@ -16,26 +16,49 @@
 //============================================================================
 
 #include "SDL_lib.hxx"
+#include "bspf.hxx"
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-int SDLCALL SDL_InitSubSystem(Uint32 flags)
+DECLSPEC Uint32 SDL_MapRGB(const SDL_PixelFormat * format, Uint8 r, Uint8 g, Uint8 b)
 {
-  return 0;
+  // X8R8G8B8
+  return (r<<16) | (g<<8) | b;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags)
+DECLSPEC void SDL_GetRGB(Uint32 pixel, const SDL_PixelFormat * format,
+                         Uint8 * r, Uint8 * g, Uint8 * b)
 {
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC int SDLCALL SDL_Init(Uint32 flags)
+DECLSPEC SDL_PixelFormat * SDLCALL SDL_AllocFormat(Uint32 pixel_format)
 {
-  return 0;
+  SDL_PixelFormat* format = new SDL_PixelFormat;
+
+  format->format = pixel_format;
+  format->palette = nullptr;
+
+  switch(pixel_format)
+  {
+  case SDL_PIXELFORMAT_ARGB8888:
+    format->BitsPerPixel = 32;
+    format->BytesPerPixel = 4;
+    break;
+
+  default:
+    format->BitsPerPixel = 8;
+    format->BytesPerPixel = 1;
+	
+    printf("SDL_AllocFormat - missing pixel format %d\n", pixel_format);
+    break;
+  }
+
+  return format;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags)
+DECLSPEC void SDLCALL SDL_FreeFormat(SDL_PixelFormat *format)
 {
-  return 0xffffffff;
+  if(format) delete format;
 }
