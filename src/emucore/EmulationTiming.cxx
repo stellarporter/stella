@@ -204,4 +204,18 @@ void EmulationTiming::recalculate()
     myPrebufferFragmentCount,
     discreteDivCeil(myMaxCyclesPerTimeslice * myAudioSampleRate, myAudioFragmentSize * myCyclesPerSecond)
   ) + myAudioQueueExtraFragments;
+
+#ifdef __LIB_RETRO__
+  // minimum # of half-frames consumed
+  myAudioFragmentSize = 2;
+
+  myPrebufferFragmentCount = 0;
+
+  /*
+  1048 samples ~ 30 frames
+   620 samples ~ 50 frames
+   524 samples ~ 60 frames
+  */
+  myAudioQueueCapacity = 2048 / 2;
+#endif
 }

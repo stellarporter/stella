@@ -77,6 +77,14 @@ Serializer::Serializer()
   }
 }
 
+#ifdef __LIB_RETRO__
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+uInt32 Serializer::length() const
+{
+  return myStream->tellp();
+}
+#endif
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void Serializer::rewind()
 {

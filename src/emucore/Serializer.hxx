@@ -61,6 +61,13 @@ class Serializer
     */
     void rewind();
 
+#ifdef __LIB_RETRO__
+    /**
+      Returns the length of the stream.
+    */
+    uInt32 length() const;
+#endif
+
     /**
       Reads a byte value (unsigned 8-bit) from the current input stream.
 
