@@ -123,6 +123,10 @@ class M6532 : public Device
      */
     void updateEmulation();
 
+#ifdef __LIB_RETRO__
+    uInt8* getRAM() { return myRAM; }
+#endif
+
   private:
 
     void setTimerRegister(uInt8 data, uInt8 interval);

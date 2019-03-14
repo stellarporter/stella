@@ -105,6 +105,13 @@ class SoundNull : public Sound
     */
     string about() const override { return "Sound disabled"; }
 
+#ifdef __LIB_RETRO__
+    /**
+      Return current number of samples in audio queue
+    */
+    uInt32 queueSize() override { return 0; }
+#endif
+
   private:
     // Following constructors and assignment operators not supported
     SoundNull() = delete;

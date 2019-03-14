@@ -98,6 +98,13 @@ class Sound
     */
     virtual string about() const = 0;
 
+#ifdef __LIB_RETRO__
+    /**
+      Return current number of samples in audio queue
+    */
+	  virtual uInt32 queueSize() = 0;
+#endif
+
   protected:
     // The OSystem for this sound object
     OSystem& myOSystem;

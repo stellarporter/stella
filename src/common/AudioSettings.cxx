@@ -52,6 +52,10 @@ AudioSettings::AudioSettings(Settings& settings)
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void AudioSettings::normalize(Settings& settings)
 {
+#ifdef __LIB_RETRO__
+  return;
+#endif
+
   int settingPreset = settings.getInt(SETTING_PRESET);
   Preset preset = normalizedPreset(settingPreset);
   if (static_cast<int>(preset) != settingPreset) settings.setValue(SETTING_PRESET, static_cast<int>(DEFAULT_PRESET));

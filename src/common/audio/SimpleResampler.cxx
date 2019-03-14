@@ -89,6 +89,9 @@ void SimpleResampler::fillFragment(float* fragment, uInt32 length)
       if (nextFragment)
         myCurrentFragment = nextFragment;
       else {
+#ifdef __LIB_RETRO__
+        if((i+1) < outputSamples)
+#endif
         myUnderrunLogger.log();
         myIsUnderrun = true;
       }

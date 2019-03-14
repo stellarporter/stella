@@ -99,6 +99,9 @@ namespace BSPF
   #elif defined(BSPF_WINDOWS)
     static const string PATH_SEPARATOR = "\\";
     #define ATTRIBUTE_FMT_PRINTF
+  #elif defined(__LIB_RETRO__)
+    static const string PATH_SEPARATOR = "/";
+    #define ATTRIBUTE_FMT_PRINTF
   #else
     #error Update src/common/bspf.hxx for path separator
   #endif
@@ -141,7 +144,7 @@ namespace BSPF
   // Compare two strings, ignoring case
   inline int compareIgnoreCase(const string& s1, const string& s2)
   {
-  #if defined BSPF_WINDOWS && !defined __GNUG__
+  #if defined BSPF_WINDOWS && !defined __GNUG__ || defined _MSC_VER
     return _stricmp(s1.c_str(), s2.c_str());
   #else
     return strcasecmp(s1.c_str(), s2.c_str());
@@ -149,7 +152,7 @@ namespace BSPF
   }
   inline int compareIgnoreCase(const char* s1, const char* s2)
   {
-  #if defined BSPF_WINDOWS && !defined __GNUG__
+  #if defined BSPF_WINDOWS && !defined __GNUG__ || defined _MSC_VER
     return _stricmp(s1, s2);
   #else
     return strcasecmp(s1, s2);
@@ -159,7 +162,7 @@ namespace BSPF
   // Test whether the first string starts with the second one (case insensitive)
   inline bool startsWithIgnoreCase(const string& s1, const string& s2)
   {
-  #if defined BSPF_WINDOWS && !defined __GNUG__
+  #if defined BSPF_WINDOWS && !defined __GNUG__ || defined _MSC_VER
     return _strnicmp(s1.c_str(), s2.c_str(), s2.length()) == 0;
   #else
     return strncasecmp(s1.c_str(), s2.c_str(), s2.length()) == 0;
@@ -167,7 +170,7 @@ namespace BSPF
   }
   inline bool startsWithIgnoreCase(const char* s1, const char* s2)
   {
-  #if defined BSPF_WINDOWS && !defined __GNUG__
+  #if defined BSPF_WINDOWS && !defined __GNUG__ || defined _MSC_VER
     return _strnicmp(s1, s2, strlen(s2)) == 0;
   #else
     return strncasecmp(s1, s2, strlen(s2)) == 0;
@@ -235,7 +238,7 @@ namespace BSPF
     std::time_t currtime;
     std::time(&currtime);
     std::tm tm_snapshot;
-  #if defined BSPF_WINDOWS && !defined __GNUG__
+  #if defined BSPF_WINDOWS && !defined __GNUG__ || defined _MSC_VER || (defined __MINGW32__ || defined __MINGW64__)
     localtime_s(&tm_snapshot, &currtime);
   #else
     localtime_r(&currtime, &tm_snapshot);

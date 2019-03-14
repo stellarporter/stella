@@ -44,6 +44,9 @@
   extern "C" {
     int stellaMain(int argc, char* argv[]);
   }
+#elif defined(__LIB_RETRO__)
+  #include "SettingsLIBRETRO.hxx"
+  #include "OSystemLIBRETRO.hxx"
 #else
   #error Unsupported platform!
 #endif
@@ -84,6 +87,8 @@ class MediaFactory
       return make_unique<OSystemWINDOWS>();
     #elif defined(BSPF_MACOS)
       return make_unique<OSystemMACOS>();
+    #elif defined(__LIB_RETRO__)
+      return make_unique<OSystemLIBRETRO>();
     #else
       #error Unsupported platform for OSystem!
     #endif
@@ -101,6 +106,8 @@ class MediaFactory
       return make_unique<SettingsWINDOWS>();
     #elif defined(BSPF_MACOS)
       return make_unique<SettingsMACOS>();
+    #elif defined(__LIB_RETRO__)
+      return make_unique<SettingsLIBRETRO>();
     #else
       #error Unsupported platform for Settings!
     #endif
